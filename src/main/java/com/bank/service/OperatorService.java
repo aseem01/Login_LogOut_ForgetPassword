@@ -5,8 +5,10 @@
  */
 package com.bank.service;
 
+import com.bank.dao.AdminDao;
 import com.bank.model.User;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -14,9 +16,11 @@ import java.util.List;
  */
 public class OperatorService implements InterfaceOperatorService {
 
+    AdminDao userDao=new AdminDao();
+    //@Autowired
     @Override
     public List listAllUser() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return userDao.listAllUsers();
     }
 
     @Override

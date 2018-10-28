@@ -28,9 +28,9 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         <property name = "defDao">
             <bean id = "defDao" class = "com.hisab.dao.DaoDefault"/>
         </property>
-    </bean>
+    </bean>-->
 
-    <bean id = "userservice" class = "com.bank.service.OperatorService">
+<!--    <bean id = "userservice" class = "com.bank.service.OperatorService">
         <property name = "userDao">
             <bean id = "userDao" class = "com.bank.dao.AdminDao"/>
         </property>

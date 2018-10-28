@@ -13,7 +13,7 @@ import java.util.List;
  * @author ASHIM
  */
 public interface AdminInterface {
-  public List listAllUsers(User user);
+  public List listAllUsers();
  
  public boolean addUser(User user);
  

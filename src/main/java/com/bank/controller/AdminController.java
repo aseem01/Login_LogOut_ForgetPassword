@@ -6,9 +6,13 @@
 package com.bank.controller;
 
 import com.bank.model.User;
+import com.bank.service.OperatorService;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -18,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("Admin/")
 public class AdminController {
-     
+
+    //@Autowired
+    OperatorService userservice=new OperatorService();
     private static HttpSession session;
 
     public static void craeteLoginSession(User user, HttpServletRequest req) {
@@ -35,8 +41,7 @@ public class AdminController {
         try {
             System.out.println("Checking session...");
             user = (User) session.getAttribute("user");
-            if(user.getUsertype().equals("Admin") && user.getStatus().equals("Active"))
-            {
+            if (user.getUsertype().equals("Admin") && user.getStatus().equals("Active")) {
                 login = true;
             } else {
                 login = false;
@@ -50,8 +55,22 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/dashboard")
-    public String viewDash()
-    {
+    public String viewDash() {
         return "Admin/dashboard";
     }
+
+    @RequestMapping(value = "/addoperator")
+    public String AddForm() {
+        return "Admin/addoperator";
+    }
+    
+     @RequestMapping(value = "/viewoperator")
+    public String ViewOperator(Model m) {
+        List<User>user=userservice.listAllUser();
+         System.out.println("user size() : "+user.size());
+        m.addAttribute("userlist",user);
+        return "Admin/viewoperator";
+    }
+    
+    
 }

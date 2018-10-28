@@ -13,8 +13,8 @@
             <div id="dropdown" class="nav navbar-nav">
                 <li><a href="#" >User <span class="glyphicon glyphicon-menu-down"></span></a></li>
                 <div class="dropdown-content">
-                    <li><a href="newProduct" ><span class="glyphicon glyphicon-plus"></span> Add User</a></li>
-                    <li><a href="newProduct" ><span class="glyphicon glyphicon-plus"></span> View User</a></li>
+                    <li><a href="addoperator" ><span class="glyphicon glyphicon-plus"></span> Add User</a></li>
+                    <li><a href="viewoperator" ><span class="glyphicon glyphicon-plus"></span> View User</a></li>
                 </div>
             </div>
             
