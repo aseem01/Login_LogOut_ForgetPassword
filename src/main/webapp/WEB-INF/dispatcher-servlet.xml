@@ -13,24 +13,42 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-<!--    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>-->
-
-    <!--
-    Most controllers will use the ControllerClassNameHandlerMapping above, but
-    for the index controller we are using ParameterizableViewController, so we must
-    define an explicit mapping for it.
-    -->
-     <context:annotation-config/>
+    <context:annotation-config/>
     <context:component-scan base-package="com.bank.controller"/>
     
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:resources mapping="/software/**" location="/software/" />
     
-
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/"
           p:suffix=".jsp" />
 
-    
+<!--    <bean id = "defServ" class = "com.hisab.service.DefaultService">
+        <property name = "defDao">
+            <bean id = "defDao" class = "com.hisab.dao.DaoDefault"/>
+        </property>
+    </bean>
+
+    <bean id = "userservice" class = "com.bank.service.OperatorService">
+        <property name = "userDao">
+            <bean id = "userDao" class = "com.bank.dao.AdminDao"/>
+        </property>
+    </bean>-->
     <mvc:annotation-driven/>
 
+<!--    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/Admin/*" />
+            <bean class="com.bank.interceptor.InterceptorAdmin" />
+        </mvc:interceptor>
+        
+    </mvc:interceptors>
+     
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/Operator/*" />
+            <bean class="com.bank.interceptor.InterceptorOperator" />
+        </mvc:interceptor>
+    </mvc:interceptors>-->
 </beans>

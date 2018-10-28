@@ -66,7 +66,7 @@ public class User  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="bank_id")
+    @JoinColumn(name="bank_id",nullable = false, referencedColumnName = "bank_id")
     public BankInfo getBankInfo() {
         return this.bankInfo;
     }

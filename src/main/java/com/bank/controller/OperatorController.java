@@ -8,11 +8,15 @@ package com.bank.controller;
 import com.bank.model.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
  * @author ASHIM
  */
+@Controller
+@RequestMapping("Operator/")
 public class OperatorController {
      private static HttpSession session;
     

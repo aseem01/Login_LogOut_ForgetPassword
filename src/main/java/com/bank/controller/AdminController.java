@@ -8,12 +8,15 @@ package com.bank.controller;
 import com.bank.model.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
  * @author ASHIM
  */
+@Controller
+@RequestMapping("Admin/")
 public class AdminController {
      
     private static HttpSession session;
@@ -46,5 +49,9 @@ public class AdminController {
         return login;
     }
 
-    
+    @RequestMapping(value = "/dashboard")
+    public String viewDash()
+    {
+        return "Admin/dashboard";
+    }
 }
