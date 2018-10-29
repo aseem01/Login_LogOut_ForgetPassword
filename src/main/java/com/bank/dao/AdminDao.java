@@ -38,7 +38,25 @@ public class AdminDao implements AdminInterface{
 
     @Override
     public boolean addUser(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       Session session = sessionFactory.openSession();
+        try {
+            System.out.println("fullname : "+user.getFullname());
+            System.out.println("password : "+user.getPassword());
+            System.out.println("email : "+user.getEmail());
+            System.out.println("joining date : "+user.getJoiningDate());
+            System.out.println("user type: "+user.getUsertype());
+            System.out.println("status : "+user.getStatus());
+            System.out.println("username : "+user.getUsername());
+            session.beginTransaction();
+            session.save(user);
+            session.getTransaction().commit();
+
+        } catch (Exception e) {
+            System.out.println("eerror : "+e.toString());
+            session.getTransaction().rollback();
+            return false;
+        }
+        return true;
     }
 
     @Override

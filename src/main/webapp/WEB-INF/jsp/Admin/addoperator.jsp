@@ -18,12 +18,14 @@
             <div class="container-fluid">
                 <div>
 
-                    <div class="row">
-                        <%@include file="header.jsp"%>
+                    <div class="row" style="background-color: #93958B">
+                        <%@include file="header.jsp" %>
                     </div>
 
                 </div>
                 <div class="row">
+                    <br>
+                    <br>
                     <div class="leftSideBar">
 
                         <div class="col-md-3">
@@ -45,7 +47,7 @@
                                         <label>FullName :</label>
                                     </td>
                                     <td>
-                                        <input type="text" name="name" class="form-control" placeholder="Enter Fullname" style="width: 80%" autofocus required>
+                                        <input type="text" name="fullname" class="form-control" placeholder="Enter Fullname" style="width: 80%" autofocus required>
                                     </td>
                                 </tr>
 
@@ -68,25 +70,14 @@
                                     <td><br></td>
                                 </tr>
 
-                                <tr>
-                                    <td>
-                                        <label>Contact :</label>
-                                    </td>
-                                    <td>
-                                        <input type="number" name="contactNo" class="form-control" placeholder="Enter Contact" style="width: 80%" autofocus required>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><br></td>
-                                    <td><br></td>
-                                </tr>
+                                
 
                                 <tr>
                                     <td>
-                                        <label>Designation :</label>
+                                        <label>Username :</label>
                                     </td>
                                     <td>
-                                        <input type="text" name="designation" class="form-control" placeholder="Enter Designation" style="width: 80%" autofocus required>
+                                        <input type="text" name="username" class="form-control" placeholder="Enter Designation" style="width: 80%" autofocus required>
                                     </td>
 
                                 </tr>
@@ -107,6 +98,23 @@
                                     <td><br></td>
                                     <td><br></td>
                                 </tr>
+                                
+                                 <tr>
+                                    <td>
+                                        <label>User Type</label>
+                                    </td>
+                                    <td><select name="usertype" class="form-control" style="width: 80%">
+                                            <option value="Operator">Operator</option>
+                                            <option value="Admin">Admin</option>
+                                        </select>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><br></td>
+                                    <td><br></td>
+                                </tr>
+                                
                                 <tr>
                                     <td>
                                         <label>Joining Date :</label>
@@ -152,7 +160,7 @@
 
                                     </td>
                                     <td>
-                                        <input type="submit" value="SignUp" class="btn btn-success" style="margin-left: 22%;width: 40%">
+                                        <input type="submit" value="SignUp" class="btn btn-primary" style="margin-left: 22%;width: 40%">
                                     </td>
                                 </tr>
 

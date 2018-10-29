@@ -119,18 +119,7 @@
                                                         <td><br></td>
                                                     </tr>
 
-                                                    <tr>
-                                                        <td>
-                                                            <label>Password :</label>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="password" value="${user.password}" class="form-control" placeholder="Enter Password" style="width: 80%" autofocus required>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><br></td>
-                                                        <td><br></td>
-                                                    </tr>
+                                                   
                                                     <tr>
                                                         <td>
                                                             <label>Joining Date :</label>
@@ -181,7 +170,7 @@
 
                                                         </td>
                                                         <td>
-                                                            <input type="submit" value="SignUp" class="btn btn-success" style="margin-left: 22%;width: 40%">
+                                                            <input type="submit" value="SignUp" class="btn btn-primary" style="margin-left: 22%;width: 40%">
                                                         </td>
                                                     </tr>
 

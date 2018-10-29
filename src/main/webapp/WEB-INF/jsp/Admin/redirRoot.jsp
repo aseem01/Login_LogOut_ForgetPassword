@@ -1,6 +1,6 @@
 <%-- 
-    Document   : footer
-    Created on : Oct 28, 2018, 6:36:06 PM
+    Document   : redirRoot
+    Created on : Jul 26, 2018, 7:29:32 AM
     Author     : Monirul Islam
 --%>
 
@@ -9,9 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta http-equiv="refresh" content="0.1;URL='../index'" />    
+        <title>Logging Out</title>
     </head>
     <body>
-    <center>Develop By</center>
+        
     </body>
 </html>
