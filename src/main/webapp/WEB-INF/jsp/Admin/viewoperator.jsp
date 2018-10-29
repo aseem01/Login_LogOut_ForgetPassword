@@ -17,8 +17,8 @@
         <div class="main_container">
             <div class="container-fluid">
                 <div>
-                    <div class="row">
-                        <%@include file="header.jsp"%>
+                   <div class="row" style="background-color: #93958B">
+                        <%@include file="header.jsp" %>
                     </div>
                 </div>
                 <div class="main">

@@ -77,7 +77,7 @@
                                         <label>Username :</label>
                                     </td>
                                     <td>
-                                        <input type="text" name="username" class="form-control" placeholder="Enter Designation" style="width: 80%" autofocus required>
+                                        <input type="text" name="username" class="form-control" placeholder="Enter Username" style="width: 80%" autofocus required>
                                     </td>
 
                                 </tr>
@@ -160,7 +160,7 @@
 
                                     </td>
                                     <td>
-                                        <input type="submit" value="SignUp" class="btn btn-primary" style="margin-left: 22%;width: 40%">
+                                        <input type="submit" value="Register" class="btn btn-primary" style="margin-left: 1%;width: 40%">
                                     </td>
                                 </tr>
 
