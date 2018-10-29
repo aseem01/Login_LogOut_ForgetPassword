@@ -32,13 +32,13 @@ public class DaoDefault implements InterfaceDefault{
     }
 
     @Override
-    public boolean checkLoginCredential(String email, String password) {
+    public boolean checkLoginCredential(String username, String password) {
         Session session = sessionFactory.openSession();
         boolean login = false;
         try {
             session.beginTransaction();
             Criteria loginCrit = session.createCriteria(User.class);
-            loginCrit.add(Restrictions.eq("email", email));
+            loginCrit.add(Restrictions.eq("username", username));
             loginCrit.add(Restrictions.eq("password", password));
             session.getTransaction();
             
@@ -58,7 +58,7 @@ public class DaoDefault implements InterfaceDefault{
     }
 
     @Override
-    public User loadUserInfo(String email,String password)
+    public User loadUserInfo(String username,String password)
     {
         User user=(User) EntityFactory.getEntityObj("User");
         Session session=sessionFactory.openSession();
@@ -66,7 +66,7 @@ public class DaoDefault implements InterfaceDefault{
         try{
             session.beginTransaction();
             Criteria criteria=session.createCriteria(User.class);
-            criteria.add(Restrictions.eq("email", email));
+            criteria.add(Restrictions.eq("username", username));
             criteria.add(Restrictions.eq("password", password));
             user=(User) criteria.uniqueResult();
         }catch(Exception e)

@@ -63,7 +63,7 @@
                                             <label>Username &nbsp;</label>
                                         </td>
                                         <td>
-                                            <input id="userNameValidation" type="email" name="email" class="form-control" placeholder="Enter Username"  autofocus required>
+                                            <input id="userNameValidation" type="text" name="username" class="form-control" placeholder="Enter Username"  autofocus required>
                                         </td>
                                     </tr>
                                     <tr>

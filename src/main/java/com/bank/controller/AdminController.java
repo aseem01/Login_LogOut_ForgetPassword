@@ -5,6 +5,7 @@
  */
 package com.bank.controller;
 
+import com.bank.encryptor.Encryptor;
 import com.bank.lib.SingletonPattern;
 import com.bank.model.User;
 import com.bank.service.AdminService;
@@ -80,6 +81,7 @@ public class AdminController {
     public String add(@ModelAttribute(value = "User") User user, @RequestParam(value = "join") String sDate1, Model m,
             @RequestParam(value = "upload") MultipartFile file, HttpServletRequest request) throws ParseException, FileNotFoundException, IOException {
         System.out.println("hi : ");
+        String encryptedPassword = Encryptor.Encrypt(user.getPassword());
         String imagename = file.getOriginalFilename();
 
         //image upload code;
@@ -100,6 +102,7 @@ public class AdminController {
             user.setJoiningDate(date);
             user.setImage(imagename);
             user.setVerificationCode("Null");
+            user.setPassword(encryptedPassword);
             User UserSession = SingletonPattern.getHelper().GetSession(request);
             user.setBankInfo(UserSession.getBankInfo());
             boolean check = adminservice.addUser(user);

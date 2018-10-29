@@ -32,15 +32,15 @@ public class DefaultController {
     }
 
     @RequestMapping(value = "UserLogin", method = RequestMethod.POST)
-    public String userLogin(@RequestParam(value = "email") String email, @RequestParam(value = "password") String password, HttpServletRequest req, Model m) {
+    public String userLogin(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, HttpServletRequest req, Model m) {
         String encryptedPassword = Encryptor.Encrypt(password);
-        System.out.println("Email :" + email);
+        System.out.println("Email :" + username);
         System.out.println("Pass " + encryptedPassword);
-        boolean login = defMod.checkLoginCredential(email, encryptedPassword);
+        boolean login = defMod.checkLoginCredential(username, encryptedPassword);
         System.out.println("val " + login);
 
         if (login) {
-            User user = defMod.loadUserInfo(email, encryptedPassword);
+            User user = defMod.loadUserInfo(username, encryptedPassword);
             if (user.getUsertype().equals("Admin") && user.getStatus().equals("Active")) {
                 System.out.println("true man");
                 AdminController.craeteLoginSession(user, req);
