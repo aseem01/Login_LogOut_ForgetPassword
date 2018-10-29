@@ -23,18 +23,18 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/"
           p:suffix=".jsp" />
-
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 <!--    <bean id = "defServ" class = "com.hisab.service.DefaultService">
         <property name = "defDao">
             <bean id = "defDao" class = "com.hisab.dao.DaoDefault"/>
         </property>
-    </bean>
-
-    <bean id = "userservice" class = "com.bank.service.OperatorService">
-        <property name = "userDao">
-            <bean id = "userDao" class = "com.bank.dao.AdminDao"/>
-        </property>
     </bean>-->
+
+    <bean id = "adminservice" class = "com.bank.service.AdminService">
+        <property name = "admindao">
+            <bean id = "admindao" class = "com.bank.dao.AdminDao"/>
+        </property>
+    </bean>
     <mvc:annotation-driven/>
 
 <!--    <mvc:interceptors>

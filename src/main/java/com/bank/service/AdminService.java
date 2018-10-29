@@ -14,29 +14,27 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author ASHIM
  */
-public class OperatorService implements InterfaceOperatorService {
+public class AdminService  implements InterfaceAdminService{
+    AdminDao admindao;
+    @Autowired
+    public void setadmindao(AdminDao admindao){
+        this.admindao=admindao;
+    } 
 
-    AdminDao userDao=new AdminDao();
-   
-   // AdminDao adminDao;
-   //@Autowired
-//    public void setUserDao(AdminDao userDao){
-//        this.userDao=userDao;
-//    } 
     @Override
     public List listAllUser() {
-       return userDao.listAllUsers();
+        return admindao.listAllUsers();
     }
 
     @Override
     public boolean addUser(User user) {
-        System.out.println("name : "+user.getFullname());
+         System.out.println("name : "+user.getFullname());
         System.out.println("email : "+user.getEmail());
         System.out.println("password : "+user.getPassword());
         System.out.println("status : "+user.getStatus());
         System.out.println("image : "+user.getImage());
         System.out.println("joining date : "+user.getJoiningDate());
-        return userDao.addUser(user);
+        return admindao.addUser(user);
     }
 
     @Override
