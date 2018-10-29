@@ -26,9 +26,7 @@
             </div>
 
             <div class="row">
-                <div class="footer">
-                    sd
-                </div>
+                <%@include file="footer.jsp" %>
             </div>
         </div>
 

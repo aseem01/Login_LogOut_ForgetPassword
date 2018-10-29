@@ -18,7 +18,7 @@ and open the template in the editor.
     margin-left: auto;
     margin-right: auto;
 }
-.footer{background-color: #93958B;min-height: 5.5em;color: #1D3575}
+.footer{background-color: #A09D93;min-height: 5.6em;color: #1D3575;margin: 5px auto;line-height: 35%;}
 
 #dropdown {
     position: relative;
@@ -27,19 +27,34 @@ and open the template in the editor.
 }
 
 .dropdown-content {
-    margin-top: 50px;
-    
+    margin-top: 30px;
+    border: .5px solid #93958B;
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
+    background-color: #D3D3D3;
+    min-width: 90px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 16px;
+/*    padding: 12px 16px;*/
     z-index: 1;
+    
 }
-.dropdown-content a:hover{text-decoration: none;color: #fff}
+.dropdown-content a:hover{text-decoration: none;}
 
 #dropdown:hover .dropdown-content {
-     background-color: #222222;
     display: block;
+    
+    padding: auto;
+    color: #fff;background-color: whitesmoke;
+    
 }
+
+#nmc{color: #1D3575;border-left: .5px dotted #D3D3D3}
+.navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
+.navbar {min-height:32px !important}
+.menubar ul li a:hover{background-color: #D3D3D3;color: white;overflow: hidden}
+/*.menubar{margin-left: 5%;height: 1%;padding: 0;list-style: none}
+.menubar ul{list-style: none}
+.menubar li{float: left}
+.menubar li a{height: 2%;display: block;padding: 10px;text-decoration: none}*/
+
+.footer{}

@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 
-$(document).ready(function (){
-    
+$(document).ready(function () {
+
 //    var hide=$("#hideByInput").val().toString();
 //    if(hide.length === 0)
 //    {
@@ -17,30 +17,39 @@ $(document).ready(function (){
 //        $("#hideP").delay(8000).fadeOut(2000);
 //        //$("#loginHere").show();
 //    }
-    
-    $("#userNameValidation").keyup(function (){
-        var userName= $("#userNameValidation").val().toString();
-        
-        if(userName.length < 6)
+
+    $("#btnLogOut").hide();
+    $("#userNameValidation").keyup(function () {
+        var userName = $("#userNameValidation").val().toString();
+
+        if (userName.length < 6)
         {
             $("#userNameValidationMsg").slideDown(1000);
-        }
-        else{
+        } else {
             $("#userNameValidationMsg").slideUp(1000);
         }
     });
-    
-    
-    $("#passwordValidation").keyup(function (){
-       var password= $("#passwordValidation").val().toString();
-       
-       if(password.length < 8)
-       {
+
+
+    $("#passwordValidation").keyup(function () {
+        var password = $("#passwordValidation").val().toString();
+
+        if (password.length < 8)
+        {
             $("#passwordValidationMsg").slideDown(1000);
-        }
-        else{
+        } else {
             $("#passwordValidationMsg").slideUp(1000);
         }
+    });
+
+
+    $("#profileName").mouseenter(function () {
+        $("#btnLogOut").slideDown(500);
+    });
+
+    $("#profileName").mouseleave(function () {
+        $("#btnLogOut").delay(1500).slideUp(500);
+
     });
 });
 

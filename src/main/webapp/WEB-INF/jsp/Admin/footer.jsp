@@ -1,17 +1,11 @@
-<%-- 
-    Document   : footer
-    Created on : Oct 28, 2018, 6:36:06 PM
-    Author     : Monirul Islam
---%>
+<div class="footer">
+    <div class="col-md-6" style="font-size: 13px">
+        <h4><%= user.getBankInfo().getBankName()%></h4>
+        <p><%= user.getBankInfo().getBankAddress()%></p>
+        <p>Mobile : <%=user.getBankInfo().getBankContactno() %></p>
+        <p>E-mail : <%= user.getBankInfo().getBankEmail() %></p>
+    </div>
+    <div class="col-md-6">
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+    </div>
+</div>
