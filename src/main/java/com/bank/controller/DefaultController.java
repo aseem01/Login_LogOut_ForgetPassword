@@ -53,7 +53,7 @@ public class DefaultController {
                 m.addAttribute("controllerReply", "You are not active.Access denied");
                 return "index";
             } else if (user.getUsertype().equals("Admin") && user.getStatus().equals("Inactive")) {
-                m.addAttribute("controllerReply", "You are not active.Access denied");
+                m.addAttribute("controllerReply", "Access denied ! You are not active.");
                 return "index";
             } else {
                 m.addAttribute("controllerReply", "Wrong email or password");

@@ -9,13 +9,14 @@ import com.bank.encryptor.Encryptor;
 import com.bank.lib.SingletonPattern;
 import com.bank.model.User;
 import com.bank.service.AdminService;
-import com.bank.service.OperatorService;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -140,4 +142,23 @@ public class AdminController {
         return "Admin/redirRoot";
     }
 
+    @RequestMapping(value = "updateoperator")
+    public String updateOperator(Model m, @ModelAttribute("user") User user, @RequestParam("join") String join) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date d = sdf.parse(join);
+            user.setJoiningDate(d);
+            boolean isUpdated = adminservice.updateUser(user);
+            if(isUpdated){
+                m.addAttribute("successMsg", "Updated Successfully");
+            }else {
+                m.addAttribute("successMsg", "Updated Failed !!");
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        List<User> userlist = adminservice.listAllUser();
+        m.addAttribute("userlist", userlist);        
+        return "Admin/viewoperator";
+    }
 }

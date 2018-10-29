@@ -6,8 +6,10 @@
 package com.bank.controller;
 
 import com.bank.model.User;
+import com.bank.service.OperatorService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,7 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("Operator/")
 public class OperatorController {
-     private static HttpSession session;
+    
+    @Autowired
+    OperatorService operatorServ;
+    
+    private static HttpSession session;
     
     public static void craeteLoginSession(User user, HttpServletRequest req) {
         System.out.println("Session Created");

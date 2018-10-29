@@ -13,9 +13,13 @@ import java.util.List;
  * @author ASHIM
  */
 public interface InterfaceAdminService {
-  public List listAllUser();
-public boolean addUser(User user);
-public boolean updateUser(User user);
-public boolean deleteUser(int id);
-    
+
+    public List listAllUser();
+
+    public boolean addUser(User user);
+
+    public boolean updateUser(User user);
+
+    public boolean deleteUser(int id);
+
 }

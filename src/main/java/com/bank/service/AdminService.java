@@ -7,19 +7,25 @@ package com.bank.service;
 
 import com.bank.dao.AdminDao;
 import com.bank.model.User;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author ASHIM
  */
-public class AdminService  implements InterfaceAdminService{
+@Service
+public class AdminService implements InterfaceAdminService {
+
     AdminDao admindao;
+
     @Autowired
-    public void setadmindao(AdminDao admindao){
-        this.admindao=admindao;
-    } 
+    public void setadmindao(AdminDao admindao) {
+        this.admindao = admindao;
+    }
 
     @Override
     public List listAllUser() {
@@ -28,23 +34,17 @@ public class AdminService  implements InterfaceAdminService{
 
     @Override
     public boolean addUser(User user) {
-         System.out.println("name : "+user.getFullname());
-        System.out.println("email : "+user.getEmail());
-        System.out.println("password : "+user.getPassword());
-        System.out.println("status : "+user.getStatus());
-        System.out.println("image : "+user.getImage());
-        System.out.println("joining date : "+user.getJoiningDate());
         return admindao.addUser(user);
     }
 
     @Override
     public boolean updateUser(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return admindao.updateUser(user);
     }
 
     @Override
     public boolean deleteUser(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

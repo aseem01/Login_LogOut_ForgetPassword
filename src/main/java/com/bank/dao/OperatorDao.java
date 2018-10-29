@@ -7,11 +7,13 @@ package com.bank.dao;
 
 import com.bank.model.User;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author ASHIM
  */
+@Repository
 public class OperatorDao implements OperatorInterface {
 
     @Override

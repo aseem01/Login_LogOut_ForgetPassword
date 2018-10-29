@@ -6,37 +6,39 @@
 package com.bank.service;
 
 import com.bank.dao.AdminDao;
+import com.bank.dao.OperatorDao;
 import com.bank.model.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author ASHIM
  */
+@Service
 public class OperatorService implements InterfaceOperatorService {
 
-    AdminDao userDao=new AdminDao();
-   
-   // AdminDao adminDao;
-   //@Autowired
+    OperatorDao operatorDao;
+    @Autowired
+    public void setOperatorDao(OperatorDao operatorDao) {
+        this.operatorDao = operatorDao;
+    }
+
+    // AdminDao adminDao;
+    //@Autowired
 //    public void setUserDao(AdminDao userDao){
 //        this.userDao=userDao;
 //    } 
+
     @Override
     public List listAllUser() {
-       return userDao.listAllUsers();
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean addUser(User user) {
-        System.out.println("name : "+user.getFullname());
-        System.out.println("email : "+user.getEmail());
-        System.out.println("password : "+user.getPassword());
-        System.out.println("status : "+user.getStatus());
-        System.out.println("image : "+user.getImage());
-        System.out.println("joining date : "+user.getJoiningDate());
-        return userDao.addUser(user);
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -48,5 +50,6 @@ public class OperatorService implements InterfaceOperatorService {
     public boolean deleteUser(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+
 }

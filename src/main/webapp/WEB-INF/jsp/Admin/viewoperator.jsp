@@ -28,6 +28,9 @@
 
                             </div>
                             <div class="col-md-10">
+                                <center><h2>User List</h2></center>
+                                <p style="text-align: center;color: #449d44" id="msg">${successMsg}</p>
+                                <hr>
                                 <table id="mydata" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -61,68 +64,56 @@
                             <c:forEach items="${userlist}" var="user">
                                 <div id="myModal${user.id}" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
-
                                     <!--Modal content-->
                                     <div class="modal-content">
                                         <div class="modal-header" style="text-align:center">
+                                            <span style="color: #286090; font-size: 25px">User Update</span>
                                             <button type="button" class="close" data-dismiss="modal">&times</button>
-
                                         </div>
                                         <div class="modal-body modelhid" >
-                                            <form method="POST" action="AddOperator" ModelAttribute="User" enctype = "multipart/form-data" class="form-inline" style="margin-left: 18%">
+                                            <form method="POST" action="updateoperator" ModelAttribute="User" class="form-inline" style="margin-left: 18%">
                                                 </br>
-
-
-                                                <table>
-
+                                                <table>                                                    
+                                                    <input type="text" value="${user.id}" name="id" style="display: none"/>
                                                     <tr>
                                                         <td>
-                                                            <label>FullName :</label>
+                                                            <label>&nbsp;Full Name</label>
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="name" value="${user.fullname}" class="form-control" placeholder="Enter Fullname" style="width: 80%" autofocus required>
-                                                        </td>
-                                                    </tr>
-
-
-                                                    <tr>
-                                                        <td><br></td>
-                                                        <td><br></td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <label>Email :</label>
-                                                        </td>
-                                                        <td>
-                                                            <input type="email" name="email" value="${user.email}" class="form-control" placeholder="Enter Email" style="width: 80%" autofocus required>
+                                                            <input type="text" name="fullname" value="${user.fullname}" class="form-control" placeholder="Enter Fullname" style="width: 80%" autofocus required>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td><br></td>
                                                         <td><br></td>
                                                     </tr>
-
-                                                    
-
                                                     <tr>
                                                         <td>
-                                                            <label>UserType :</label>
+                                                            <label>Email </label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="email" name="email" value="${user.email}" class="form-control" placeholder="Enter Email" style="width: 80%" autofocus readonly>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><br></td>
+                                                        <td><br></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <label>User-Type </label>
                                                         </td>
                                                         <td>
                                                             <input type="text" name="usertype" value="${user.usertype}" class="form-control" placeholder="Enter Designation" style="width: 80%" autofocus required>
                                                         </td>
-
                                                     </tr>
                                                     <tr>
                                                         <td><br></td>
                                                         <td><br></td>
-                                                    </tr>
-
-                                                   
+                                                    </tr>                                                   
                                                     <tr>
                                                         <td>
-                                                            <label>Joining Date :</label>
+                                                            <label>Joining Date </label>
                                                         </td>
                                                         <td>
                                                             <input type="date" name="join" value="${user.joiningDate}" class="form-control" style="width: 80%" autofocus required>
@@ -138,21 +129,18 @@
                                                         </td>
                                                         <td><select name="status" value="${user.status}" class="form-control" style="width: 80%">
                                                                 <option value="Active">Active</option>
-                                                                <option value="InActive">InActive</option>
+                                                                <option value="Inactive">Inactive</option>
                                                             </select>
-
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td><br></td>
                                                         <td><br></td>
-                                                    </tr>
-                                                    
-                                                    <tr>
+                                                    </tr>                                                    
+<!--                                                    <tr>
                                                         <td><br></td>
                                                         <td><img src="../${user.image}" style="height: 55px;width: 55px"></td>
                                                     </tr>
-
                                                     <tr>
                                                         <td>
                                                             <label>Image :</label>
@@ -160,53 +148,36 @@
                                                         <td>
                                                             <input type="file" name="upload" class="form-control" style="width: 80%" autofocus required>
                                                         </td>
-                                                    </tr>
+                                                    </tr>-->
                                                     <tr>
                                                         <td><br></td>
                                                         <td><br></td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-
                                                         </td>
                                                         <td>
-                                                            <input type="submit" value="SignUp" class="btn btn-primary" style="margin-left: 22%;width: 40%">
+                                                            <input type="submit" value="Update" class="btn btn-primary" style="width: 40%">
                                                         </td>
                                                     </tr>
-
                                                 </table>
                                                 <br><br>
                                             </form>
-
-
-
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             </c:forEach>
-                            
-
-
-
-
-
                         </div>
-
                     </div>
                 </div>
                 <div class="row">
                     <div class="footer">
                         <%@include file="footer.jsp"%>
-
                     </div>
-
                 </div>
             </div>
-
         </div>
-
         <script>
             $(document).ready(function () {
                 $("#mydata").DataTable({
@@ -216,7 +187,11 @@
                         searchPlaceholder: "Search..."
                     }
                 });
+                
+                $("#msg").delay(3000).slideUp(500);
             });
+            
+            
         </script>
 
     </body>
