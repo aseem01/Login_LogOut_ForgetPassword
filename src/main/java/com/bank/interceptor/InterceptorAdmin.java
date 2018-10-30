@@ -8,18 +8,20 @@ package com.bank.interceptor;
 import com.bank.controller.AdminController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
  *
  * @author ASHIM
  */
-public class InterceptorAdmin {
+public class InterceptorAdmin extends HandlerInterceptorAdapter{
     
+    @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         boolean login = AdminController.checkSession();
 
-        System.out.println("Shop Admin interceptor...");
+        System.out.println("Admin interceptor...");
         System.out.println("url : " + request.getContextPath());
         if (login) {
             return login;

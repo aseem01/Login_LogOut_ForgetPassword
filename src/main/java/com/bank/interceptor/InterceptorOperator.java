@@ -20,7 +20,7 @@ public class InterceptorOperator extends HandlerInterceptorAdapter{
 
         boolean login = OperatorController.checkSession();
 
-        System.out.println("Shop interceptor...");
+        System.out.println("Interceptor...");
         System.out.println("url : " + request.getContextPath());
         if (login) {
             return login;

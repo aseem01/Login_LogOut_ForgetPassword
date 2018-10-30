@@ -60,7 +60,7 @@ public class DefaultController {
             }
             return "index";
         } else {
-            System.out.println("m.addAttribute(\"controllerReply\", \"Wrong email or password\");");
+            
             m.addAttribute("controllerReply", "Wrong email or password");
             return "index";
         }

@@ -7,6 +7,7 @@ package com.bank.dao;
 
 import com.bank.model.User;
 import java.util.List;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,7 +16,16 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class OperatorDao implements OperatorInterface {
+void sessionClose(Session session) {
+        try {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public List listAllUsers(User user) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

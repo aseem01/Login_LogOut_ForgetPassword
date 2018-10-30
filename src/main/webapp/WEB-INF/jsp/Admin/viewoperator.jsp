@@ -67,11 +67,13 @@
                                     <!--Modal content-->
                                     <div class="modal-content">
                                         <div class="modal-header" style="text-align:center">
-                                            <span style="color: #286090; font-size: 25px">User Update</span>
                                             <button type="button" class="close" data-dismiss="modal">&times</button>
+                                            <img src="../resources/site_images/logo_update_user.png" style="height: 45px;width: 45px" alt=""/>
+                                            <p style="color: #286090; font-size: 25px;margin-bottom: -.7em">Update User Information</p>
+                                            
                                         </div>
                                         <div class="modal-body modelhid" >
-                                            <form method="POST" action="updateoperator" ModelAttribute="User" class="form-inline" style="margin-left: 18%">
+                                            <form method="POST" action="updateoperator" ModelAttribute="User" class="form-inline" style="margin-left: 26%">
                                                 </br>
                                                 <table>                                                    
                                                     <input type="text" value="${user.id}" name="id" style="display: none"/>
@@ -137,22 +139,11 @@
                                                         <td><br></td>
                                                         <td><br></td>
                                                     </tr>                                                    
+
 <!--                                                    <tr>
                                                         <td><br></td>
-                                                        <td><img src="../${user.image}" style="height: 55px;width: 55px"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <label>Image :</label>
-                                                        </td>
-                                                        <td>
-                                                            <input type="file" name="upload" class="form-control" style="width: 80%" autofocus required>
-                                                        </td>
+                                                        <td><br></td>
                                                     </tr>-->
-                                                    <tr>
-                                                        <td><br></td>
-                                                        <td><br></td>
-                                                    </tr>
                                                     <tr>
                                                         <td>
                                                         </td>

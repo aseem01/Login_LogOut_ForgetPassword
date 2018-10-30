@@ -37,9 +37,7 @@
                         <img src="../resources/site_images/signup.png" alt=""  style="height: 25%;width: 25%;margin-left: 37%"/>  
                         <hr style="border-bottom: 1px solid green">
                         <form method="POST" action="AddOperator" ModelAttribute="User" enctype = "multipart/form-data" class="form-inline" style="margin-left: 18%">
-                            </br>
-
-
+                            </br> 
                             <table>
 
                                 <tr>
@@ -70,7 +68,7 @@
                                     <td><br></td>
                                 </tr>
 
-                                
+
 
                                 <tr>
                                     <td>
@@ -98,8 +96,8 @@
                                     <td><br></td>
                                     <td><br></td>
                                 </tr>
-                                
-                                 <tr>
+
+                                <tr>
                                     <td>
                                         <label>User Type</label>
                                     </td>
@@ -114,7 +112,7 @@
                                     <td><br></td>
                                     <td><br></td>
                                 </tr>
-                                
+
                                 <tr>
                                     <td>
                                         <label>Joining Date :</label>
@@ -181,11 +179,7 @@
             </div>
             <br>
             <div class="row">
-                <div class="footer">
-                    <%@include file="footer.jsp"%>
-
-                </div>
-
+                <%@include file="footer.jsp"%>
             </div>
 
         </div>

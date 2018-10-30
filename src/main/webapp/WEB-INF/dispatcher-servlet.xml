@@ -43,18 +43,18 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     </bean>
     <mvc:annotation-driven/>
 
-<!--    <mvc:interceptors>
+    <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/Admin/*" />
             <bean class="com.bank.interceptor.InterceptorAdmin" />
         </mvc:interceptor>
         
     </mvc:interceptors>
-     
+  
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/Operator/*" />
             <bean class="com.bank.interceptor.InterceptorOperator" />
         </mvc:interceptor>
-    </mvc:interceptors>-->
+    </mvc:interceptors>
 </beans>

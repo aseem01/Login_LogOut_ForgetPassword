@@ -21,6 +21,17 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AdminDao implements AdminInterface {
 
+    void sessionClose(Session session) {
+        try {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     @Override
@@ -36,6 +47,8 @@ public class AdminDao implements AdminInterface {
         } catch (HibernateException e) {
             session.getTransaction();
             System.out.println("error int view : " + e.toString());
+        } finally {
+            sessionClose(session);
         }
         return list;
     }
@@ -59,6 +72,8 @@ public class AdminDao implements AdminInterface {
             System.out.println("eerror : " + e.toString());
             session.getTransaction().rollback();
             return false;
+        } finally {
+            sessionClose(session);
         }
         return true;
     }
@@ -66,6 +81,7 @@ public class AdminDao implements AdminInterface {
     @Override
     public boolean updateUser(User user) {
 
+        boolean done = false;
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         try {
@@ -76,11 +92,14 @@ public class AdminDao implements AdminInterface {
             usr.setUsertype(user.getUsertype());
             session.update(usr);
             session.getTransaction().commit();
-            return true;
+            done = true;
         } catch (Exception e) {
             session.getTransaction().rollback();
-            return false;
+            done = false;
+        } finally {
+            sessionClose(session);
         }
+        return done;
     }
 
     @Override
