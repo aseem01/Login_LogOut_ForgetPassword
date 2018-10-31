@@ -20,12 +20,12 @@ import org.springframework.web.multipart.MultipartFile;
  * @author ASHIM
  */
 public class Helper {
-     public boolean Imageupload(String UploadPath,MultipartFile file) throws FileNotFoundException, IOException
+     public boolean Imageupload(String UploadPath,MultipartFile file,String fileName) throws FileNotFoundException, IOException
     {
         if (!file.getOriginalFilename().isEmpty()) {
             BufferedOutputStream outputStream = new BufferedOutputStream(
                     new FileOutputStream(
-                    new File(UploadPath,file.getOriginalFilename())));
+                    new File(UploadPath,fileName)));
             
             outputStream.write(file.getBytes());
             outputStream.flush();

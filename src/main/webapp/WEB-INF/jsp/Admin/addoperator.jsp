@@ -89,7 +89,7 @@
                                         <label>Password :</label>
                                     </td>
                                     <td>
-                                        <input type="text" name="password" class="form-control" placeholder="Enter Password" style="width: 80%" autofocus required>
+                                        <input type="password" name="password" class="form-control" placeholder="Enter Password" style="width: 80%" autofocus required>
                                     </td>
                                 </tr>
                                 <tr>
@@ -146,7 +146,7 @@
                                         <label>Image :</label>
                                     </td>
                                     <td>
-                                        <input type="file" name="upload" class="form-control" style="width: 80%" autofocus required>
+                                        <input type="file" name="upload" class="form-control" style="width: 80%" autofocus>
                                     </td>
                                 </tr>
                                 <tr>

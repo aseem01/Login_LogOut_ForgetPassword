@@ -43,6 +43,12 @@ public class AdminService implements InterfaceAdminService {
     }
 
     @Override
+    public Integer getMaxUserId()
+    {
+        return admindao.getMaxUserId();
+    }
+    
+    @Override
     public boolean deleteUser(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

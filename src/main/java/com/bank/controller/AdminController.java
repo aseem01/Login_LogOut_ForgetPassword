@@ -9,6 +9,7 @@ import com.bank.encryptor.Encryptor;
 import com.bank.lib.SingletonPattern;
 import com.bank.model.User;
 import com.bank.service.AdminService;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
@@ -19,7 +20,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -84,25 +87,36 @@ public class AdminController {
             @RequestParam(value = "upload") MultipartFile file, HttpServletRequest request) throws ParseException, FileNotFoundException, IOException {
         System.out.println("hi : ");
         String encryptedPassword = Encryptor.Encrypt(user.getPassword());
-        String imagename = file.getOriginalFilename();
+        String imageName = "";
+        String fileExte = FilenameUtils.getExtension(file.getOriginalFilename());
+//        String imagename = file.getOriginalFilename();
+    
+        boolean test=false;
+        if (file.isEmpty()) {
+            imageName = "default_user_image.png";
+            test=true;
+        } else {
+            System.out.println(" ID : " + adminservice.getMaxUserId() + 1);
 
-        //image upload code;
-        String root = request.getRealPath("/");
-
-        System.out.println("root : " + root);
-        String rootPath = root.substring(0, root.indexOf("improvement_multipurpose"));
-        rootPath = rootPath + "improvement_multipurpose\\src\\main\\webapp\\software\\user_image\\";
-        System.out.println("rootpath : " + rootPath);
-        boolean test = SingletonPattern.getHelper().Imageupload(rootPath, file);
-
+            imageName = "user_" + (adminservice.getMaxUserId() + 1) + "." + fileExte;
+            System.out.println("New name : " + imageName);
+            //image upload code;
+            String root = request.getRealPath("/");
+            System.out.println("new name  " + file.getOriginalFilename());
+            String rootPath = root.substring(0, root.indexOf("improvement_multipurpose"));
+            rootPath = rootPath + "improvement_multipurpose\\src\\main\\webapp\\software\\user_image\\";
+            System.out.println("rootpath : " + rootPath);
+            test = SingletonPattern.getHelper().Imageupload(rootPath, file, imageName);
+        }
+        
         if (test) {
-            System.out.println("file name : " + imagename);
+            System.out.println("file name : " + imageName);
             System.out.println("I'm running : " + sDate1);
             Date date = new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);
             System.out.println("date : " + sDate1);
-            imagename = "\\software\\user_image\\" + imagename;
+            imageName = "\\software\\user_image\\" + imageName;
             user.setJoiningDate(date);
-            user.setImage(imagename);
+            user.setImage(imageName);
             user.setVerificationCode("Null");
             user.setPassword(encryptedPassword);
             User UserSession = SingletonPattern.getHelper().GetSession(request);
@@ -149,16 +163,16 @@ public class AdminController {
             Date d = sdf.parse(join);
             user.setJoiningDate(d);
             boolean isUpdated = adminservice.updateUser(user);
-            if(isUpdated){
+            if (isUpdated) {
                 m.addAttribute("successMsg", "Updated Successfully");
-            }else {
+            } else {
                 m.addAttribute("successMsg", "Updated Failed !!");
             }
         } catch (ParseException ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
         List<User> userlist = adminservice.listAllUser();
-        m.addAttribute("userlist", userlist);        
+        m.addAttribute("userlist", userlist);
         return "Admin/viewoperator";
     }
 }

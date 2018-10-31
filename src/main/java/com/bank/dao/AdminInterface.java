@@ -20,5 +20,7 @@ public interface AdminInterface {
  public boolean updateUser(User user);
  
  public boolean deleteUser(int id);
+ 
+ public Integer getMaxUserId() ;
     
 }

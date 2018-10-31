@@ -12,6 +12,8 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -102,6 +104,27 @@ public class AdminDao implements AdminInterface {
         return done;
     }
 
+    @Override
+    public Integer getMaxUserId()
+    {
+        Integer maxId=0;
+        Session session=sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+            Criteria crt=session.createCriteria(User.class);
+            crt.setProjection(Projections.max("id"));
+            maxId=(Integer) crt.uniqueResult();
+            System.out.println("Max ID : "+maxId);
+        }catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+            maxId=0;
+        } finally {
+            sessionClose(session);
+        }
+        return maxId;
+    }
+    
     @Override
     public boolean deleteUser(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
