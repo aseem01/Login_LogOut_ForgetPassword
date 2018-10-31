@@ -16,6 +16,27 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     <context:annotation-config/>
     <context:component-scan base-package="com.bank.controller"/>
     
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+
+        <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="587" />
+        <property name="username" value="satubiswas2020@gmail.com" />
+        <property name="password" value="01926470261" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.host">smtp.gmail.com</prop>
+                <prop key="mail.smtp.socketFactory.port">587</prop>
+                <prop key="mail.username">satubiswas2020@gmail.com</prop>
+                <prop key="mail.password">01926470261</prop>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.from.email">satubiswas2020@gmail.com</prop>
+                
+            </props>
+        </property>
+    </bean>
+    
     <mvc:resources mapping="/resources/**" location="/resources/" />
     <mvc:resources mapping="/software/**" location="/software/" />
     

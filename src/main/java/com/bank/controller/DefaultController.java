@@ -8,7 +8,14 @@ package com.bank.controller;
 import com.bank.dao.DaoDefault;
 import com.bank.encryptor.Encryptor;
 import com.bank.model.User;
+import java.util.Random;
+import javax.servlet.DispatcherType;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,12 +28,19 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class DefaultController {
-    
-    DaoDefault defMod=new DaoDefault();
-    
-    @RequestMapping(value = {"/", "index"})
-    public String viewIndex() {
 
+    HttpSession ss;
+
+    @Autowired
+    private JavaMailSender mailSenderObj;
+
+    static String emailToRecipient, emailSubject, emailMessage;
+    static final String emailFromRecipient = "satubiswas2020@gmail.com";
+
+    DaoDefault defMod = new DaoDefault();
+
+    @RequestMapping(value = {"/", "index"})
+    public String viewIndex(Model m) {
         System.out.println("I'm running man.");
         return "index";
     }
@@ -65,6 +79,62 @@ public class DefaultController {
             return "index";
         }
 
+    }
+
+    @RequestMapping(value = "checkuser", method = RequestMethod.POST)
+    public String generateCode(Model m, @RequestParam("uname") String uname, HttpServletRequest req) {
+        if (defMod.checkUsername(uname)) {
+            Random rd = new Random();
+            final int randomnumber = rd.nextInt(999999);
+            ss = req.getSession();
+            final User u = defMod.generateRandomNumInsert(uname, randomnumber);
+            ss.setAttribute("userid", u.getId());
+            ss.setAttribute("useremail", u.getEmail());
+            mailSenderObj.send(new MimeMessagePreparator() {
+                @Override
+                public void prepare(javax.mail.internet.MimeMessage mm) throws Exception {
+                    MimeMessageHelper mimeMsgHelperObj = new MimeMessageHelper(mm, true, "UTF-8");
+                    mimeMsgHelperObj.setTo(u.getEmail());
+                    mimeMsgHelperObj.setFrom(emailFromRecipient);
+                    mimeMsgHelperObj.setText("Your verification code is : " + randomnumber);
+                    mimeMsgHelperObj.setSubject("Verification code");
+                }
+            });
+            m.addAttribute("newpass", "yes");
+            m.addAttribute("codetoemail", u.getEmail());
+            return "index";
+        } else {
+            m.addAttribute("newpass", "no");
+            return "index";
+        }
+    }
+
+    @RequestMapping(value = "checkuser", method = RequestMethod.GET)
+    public String checkuser() {
+        return "index";
+    }
+
+    @RequestMapping(value = "verifycode", method = RequestMethod.POST)
+    public String verifyCode(Model m, @RequestParam("vcode") String code) {
+        
+        if (defMod.verifyCode(code)) {
+            m.addAttribute("isCodeMatched", "yes");
+            return "index";
+        } else {
+            m.addAttribute("codetoemail", ss.getAttribute("useremail"));
+            m.addAttribute("isCodeMatched", "no");
+            return "index";
+        }
+    }
+
+    @RequestMapping(value = "recoverypassword", method = RequestMethod.POST)
+    public String recoverypassword(@RequestParam("pass") String pass) {
+        if (ss != null) {
+            if (defMod.updatePassword(pass, ss.getAttribute("userid") + "")) {
+                return "index";
+            }
+        }
+        return "index";
     }
 
 }

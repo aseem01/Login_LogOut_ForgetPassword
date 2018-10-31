@@ -24,7 +24,6 @@
     </head>
     <body>
         <div class="container-fluid">
-
             <div class="row" style="background-color: #93958B">
                 <div class="col-md-3" style="background-color: #B3A99C">
                     <img src="software/org_logo/imcsl_logo.png" style="height: 85px;width: 340px;float: left">
@@ -44,10 +43,9 @@
 
                         <div class="row">
                             <br>
-                            <img src="resources/site_images/login_logo1.png" style="border-radius: 50%;" height="115" width="115" class="center">
-                            
+                            <img src="resources/site_images/login_logo1.png" style="border-radius: 50%;" height="115" width="115" class="center">                            
                             <hr style="margin-bottom: -15px">
-                            
+
                             <h3 id="loginHere"> Login Here</h3>
                             <input type="hidden" id="hideByInput" value=${controllerReply}>
                             <p style="color: #286090;text-align: center" id="hideP">${controllerReply}</p>
@@ -76,6 +74,7 @@
                                         </td>
                                         <td>
                                             <input id="passwordValidation" type="password" name="password" class="form-control" placeholder="Enter Password"  autofocus  required>
+                                            <br><a href="javascript:void(0)" id="fpassword" style="text-decoration: none" data-toggle="modal" data-target="#username">Forgot password ?</a>
                                         </td>
                                     </tr>
                                     <tr>
@@ -91,10 +90,7 @@
                                         </td>
                                     </tr>
                                 </table>
-
                                 <br>
-
-
                             </form>
                         </div>
                     </div>
@@ -102,7 +98,6 @@
 
                     </div>
                 </div>
-
             </div>
 
             <div class="row">
@@ -112,5 +107,79 @@
             </div>
         </div>
 
+        <!--get user name  Modal -->
+        <div class="modal fade" id="username" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">                    
+                    <div class="modal-body">
+                        <form method="post" action="checkuser">
+                            <h2>For Verification</h2>
+                            <p id="wronguser" style="display: none; color: red">Wrong user !!</p>
+                            username<input type="text" name="uname"/>
+                            <input type="submit" class="btn btn-default" style="margin-left: 100px; margin-top: 5px" value="Submit" />                            
+                            <button type="button" class="btn btn-default" style="margin-top: 5px" data-dismiss="modal">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--update password  Modal -->
+        <div class="modal fade" id="newpass" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">                    
+                    <div class="modal-body">
+                        <form method="post" action="recoverypassword">
+                            <h2>Password Recovery</h2>
+                            new password<br><input type="password" name="firstpass"/><br>
+                            retype password<br><input type="password" name="pass"/>                            
+                            <input type="submit" class="btn btn-default" style="margin-left: 100px; margin-top: 5px" value="Submit" />                            
+                            <button type="button" class="btn btn-default" style="margin-top: 5px" data-dismiss="modal">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <!--enter code  Modal -->
+        <div class="modal fade" id="code_verify" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">                    
+                    <div class="modal-body">
+                        <form method="post" action="verifycode">
+                            <h2>Enter code</h2>
+                            <p id="wrongcode" style="color: red; display: none">Wrong Code !!</p>
+                            <span>check <b>${codetoemail}</b></span>
+                            <input type="text" name="vcode"/>                            
+                            <input type="submit" class="btn btn-default" style="margin-left: 100px; margin-top: 5px" value="Submit" />                            
+                            <button type="button" class="btn btn-default" style="margin-top: 5px" data-dismiss="modal">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="text" value="${newpass}" id="mpass" style="display: none"/>
+        <input type="text" id="codematchresult" value="${isCodeMatched}"/>
+
     </body>
+    <script>
+        var mpass = $("#mpass").val();
+
+        if (mpass === "yes") {
+            $("#mpass").val('');
+            $("#code_verify").modal("show");
+        } else if (mpass === "no") {
+            $("#wronguser").show("slow").delay(3000).slideUp("slow");
+            $("#username").modal("show");
+        }
+
+        var matchcode = $("#codematchresult").val();
+        console.log("match code : "+matchcode);
+        if (matchcode === "yes") {
+            $("#newpass").modal("show");
+        } else if (matchcode === "no") {
+            $("#wrongcode").show().delay(3000).slideUp("slow");
+            $("#code_verify").modal("show");
+        }
+
+    </script>
 </html>

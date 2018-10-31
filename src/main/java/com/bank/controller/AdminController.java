@@ -174,5 +174,6 @@ public class AdminController {
         List<User> userlist = adminservice.listAllUser();
         m.addAttribute("userlist", userlist);
         return "Admin/viewoperator";
-    }
+    }    
+    
 }
