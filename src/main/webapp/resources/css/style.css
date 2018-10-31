@@ -11,6 +11,12 @@ and open the template in the editor.
 .main{min-height: 35em}
 .main hr{height: 1px;color: #449d44;border-top: 1px solid #286090;}
 .errorMsg{text-align: center;background-color: #FCf8E3;border: .3px dotted #9d9d9d}
+.vl{margin: 10px auto;
+    width: 25%;
+    height: 350px;
+    border-left:1px solid #286090;
+    position:relative;
+    text-align:center}
 .validationMsg{text-align: center;color: #FF4500}
 .main h3{text-align: center;color: #286090;padding: 1px}
 .center {

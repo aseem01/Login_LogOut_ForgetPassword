@@ -28,11 +28,17 @@
             <br>
         </div>
         <div id="btnLogOut">
+             <a href="profileview">
+                <button type="button" class="btn btn-sm">
+                    <span class="glyphicon glyphicon-edit"></span>Profile
+                </button>
+            </a>
             <a href="Logout" >
                 <button type="button" class="btn btn-danger btn-sm">
                     <span class="glyphicon glyphicon-log-out"></span> Log out
                 </button>
             </a>
+           
         </div>
             
     </div>

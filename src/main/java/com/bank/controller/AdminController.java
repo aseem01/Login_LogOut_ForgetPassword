@@ -174,6 +174,15 @@ public class AdminController {
         List<User> userlist = adminservice.listAllUser();
         m.addAttribute("userlist", userlist);
         return "Admin/viewoperator";
-    }    
+    } 
+    
+     //view profile Admin;
+    @RequestMapping(value="/profileview",method=RequestMethod.GET)
+    public String ViewProfile(HttpServletRequest request,Model m)
+    {
+        User usersession=SingletonPattern.getHelper().GetSession(request);
+        m.addAttribute("user",usersession);
+        return "Admin/adminprofile";
+    }
     
 }
