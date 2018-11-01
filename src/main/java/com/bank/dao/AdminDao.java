@@ -126,6 +126,57 @@ public class AdminDao implements AdminInterface {
     }
     
     @Override
+    public String getUserPassword(Integer id)
+    {
+        String pasw="";
+        Session session=sessionFactory.openSession();
+        try{
+            User user=(User) session.get(User.class,id);
+            pasw=user.getPassword();
+        }catch (Exception e) {
+            e.printStackTrace();
+            
+        } finally {
+            sessionClose(session);
+        }
+        return pasw;
+    }
+    
+    @Override
+    public boolean updateMyProfile(User user)
+    {
+        boolean update=false;
+        Session session=sessionFactory.openSession();
+        session.beginTransaction();
+        try{
+            
+//            User usr = (User) session.get(User.class, user.getId());
+//            session.clear();
+//            System.out.println("User pasw "+usr.getPassword());
+//            usr.setFullname(user.getFullname());
+//            usr.setEmail(user.getEmail());
+//            if(user.getPassword().length()>7)
+//            {
+//                usr.setPassword(user.getPassword());
+//            }
+//            usr.setImage(user.getImage());
+            session.update(user);
+            session.getTransaction().commit();
+            update=true;
+        }catch(Exception e)
+        {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            update=false;
+        }finally {
+            sessionClose(session);
+        }
+        
+        return update;
+    }
+    
+    
+    @Override
     public boolean deleteUser(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

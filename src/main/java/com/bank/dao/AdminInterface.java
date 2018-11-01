@@ -22,5 +22,9 @@ public interface AdminInterface {
  public boolean deleteUser(int id);
  
  public Integer getMaxUserId() ;
+ 
+ public boolean updateMyProfile(User user);
+ 
+ public String getUserPassword(Integer id);
     
 }

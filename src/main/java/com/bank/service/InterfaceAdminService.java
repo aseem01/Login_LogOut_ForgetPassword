@@ -23,5 +23,9 @@ public interface InterfaceAdminService {
     public boolean deleteUser(int id);
     
     public Integer getMaxUserId() ;
+    
+    public boolean updateMyprofile(User user);
+    
+    public String getMyPasw(Integer id);
 
 }

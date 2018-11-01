@@ -22,14 +22,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -88,13 +86,13 @@ public class AdminController {
         System.out.println("hi : ");
         String encryptedPassword = Encryptor.Encrypt(user.getPassword());
         String imageName = "";
-        String fileExte = FilenameUtils.getExtension(file.getOriginalFilename());
+        String fileExte = FilenameUtils.getExtension(file.getOriginalFilename()).toLowerCase();
 //        String imagename = file.getOriginalFilename();
-    
-        boolean test=false;
+
+        boolean test = false;
         if (file.isEmpty()) {
             imageName = "default_user_image.png";
-            test=true;
+            test = true;
         } else {
             System.out.println(" ID : " + adminservice.getMaxUserId() + 1);
 
@@ -108,7 +106,7 @@ public class AdminController {
             System.out.println("rootpath : " + rootPath);
             test = SingletonPattern.getHelper().Imageupload(rootPath, file, imageName);
         }
-        
+
         if (test) {
             System.out.println("file name : " + imageName);
             System.out.println("I'm running : " + sDate1);
@@ -174,15 +172,74 @@ public class AdminController {
         List<User> userlist = adminservice.listAllUser();
         m.addAttribute("userlist", userlist);
         return "Admin/viewoperator";
-    } 
-    
-     //view profile Admin;
-    @RequestMapping(value="/profileview",method=RequestMethod.GET)
-    public String ViewProfile(HttpServletRequest request,Model m)
-    {
-        User usersession=SingletonPattern.getHelper().GetSession(request);
-        m.addAttribute("user",usersession);
+    }
+
+    //view profile Admin;
+    @RequestMapping(value = "/profileview", method = RequestMethod.GET)
+    public String ViewProfile(HttpServletRequest request, Model m) {
+        User usersession = SingletonPattern.getHelper().GetSession(request);
+        m.addAttribute("user", usersession);
         return "Admin/adminprofile";
     }
-    
+
+    @RequestMapping(value = "/updateAdminProfile", method = RequestMethod.POST)
+    public String updateProfile(@ModelAttribute("User") User updateUser, MultipartFile newImg, HttpServletRequest request, Model m) {
+        User user = SingletonPattern.getHelper().GetSession(request);
+
+        System.out.println("Update pas " + updateUser.getPassword());
+        //System.out.println("Update pas "+updateUser.getEmail());
+        //System.out.println("Image :" +newImg.getOriginalFilename());
+
+        if (!user.getFullname().equals(updateUser.getFullname())) {
+            user.setFullname(updateUser.getFullname());
+        }
+        if (updateUser.getPassword().length() > 7) {
+            user.setPassword(Encryptor.Encrypt(updateUser.getPassword()));
+            System.out.println("New Passw " + updateUser.getPassword());
+        } else {
+            user.setPassword(adminservice.getMyPasw(user.getId()));
+        }
+        if (!user.getEmail().equals(updateUser.getEmail())) {
+            user.setEmail(updateUser.getEmail());
+        }
+        try {
+            if (!newImg.isEmpty()) {
+                System.out.println(" ID : " + adminservice.getMaxUserId() + 1);
+                String fileExte = FilenameUtils.getExtension(newImg.getOriginalFilename()).toLowerCase();
+                String imageName = "user_" + user.getId() + "." + fileExte;
+
+                System.out.println("New name : " + imageName);
+                String root = request.getRealPath("/");
+                System.out.println("root " + root);
+                String rootPath = root.substring(0, root.indexOf("improvement_multipurpose"));
+                rootPath = rootPath + "improvement_multipurpose\\src\\main\\webapp\\software\\user_image\\";
+                System.out.println("rootpath : " + rootPath);
+
+                if (SingletonPattern.getHelper().deleteOldFile(rootPath, imageName)) {
+                    Thread.currentThread().sleep(500);
+                    SingletonPattern.getHelper().Imageupload(rootPath, newImg, imageName);
+                    Thread.currentThread().sleep(1200);
+                    imageName = "\\software\\user_image\\" + imageName;
+                    
+                    user.setImage(imageName);
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        
+        session.setAttribute("user", user);
+        boolean update = adminservice.updateMyprofile(user);
+        if (update) {
+            
+            m.addAttribute("controllerMsg", "Profile Updated !");
+        } else {
+            m.addAttribute("controllerMsg", "Error Occured !");
+        }
+        m.addAttribute("user", user);
+        return "redirect:/Admin/profileview";
+
+    }
 }

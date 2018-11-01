@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>View User</title>
+        <title>My Profile</title>
         <%@include file="head.jsp"%>
     </head>
     <body>
@@ -27,7 +27,7 @@
                             <div class="col-md-1">
 
                             </div>
-                            <form method="POST" action="updateadmin" ModelAttribute="User" enctype = "multipart/form-data" class="form-inline" style="margin-left: 18%">
+                            <form method="POST" action="updateAdminProfile" ModelAttribute="User" enctype = "multipart/form-data" class="form-inline" style="margin-left: 18%">
 
                                 <div class="col-md-10">
                                     <center><h2>Personal Information</h2></center>
@@ -44,7 +44,7 @@
                                                     <td><br></td>
                                                 </tr>
                                                 <tr>
-                                                    <td style="text-align: center"> <label class="btn btn-primary glyphicon glyphicon-upload" style="width:100px">Upload<input type="file" id="imgInp" style="display: none"/></label></td>
+                                                    <td style="text-align: center"> <label class="btn btn-primary glyphicon glyphicon-upload" style="width:100px">Upload<input type="file" id="imgInp" name="newImg" style="display: none"/></label></td>
                                                 </tr>
 
 
@@ -90,13 +90,13 @@
                                                         <label>Password</label>
                                                     </td>
                                                     <td>
-                                                        <input type="password" name="password" class="form-control" placeholder="Enter new Password" style="width: 80%">
+                                                        <input type="password" name="password" id="passwordValidation" class="form-control" placeholder="Enter new Password" style="width: 80%">
                                                     </td>
 
                                                 </tr>
                                                 <tr>
                                                     <td><br></td>
-                                                    <td><br></td>
+                                                    <td><p id="passwordValidationMsg" style="color: tomato" hidden>Please enter Minimum 8 Characters </p></td>
                                                 </tr>
 
 

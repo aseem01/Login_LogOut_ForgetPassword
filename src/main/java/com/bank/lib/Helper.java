@@ -41,4 +41,21 @@ public class Helper {
         return (User) session.getAttribute("user");
     }
     
+    public boolean deleteOldFile(String rootPath,String fileName)
+    {
+        boolean delete=false;
+        
+        try{
+            File oldFile=new File(rootPath+fileName);
+                oldFile.delete();
+
+                delete=true;
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            delete=false;
+        }
+        return delete;
+    }
+    
 }

@@ -5,7 +5,7 @@
  */
 
 $(document).ready(function () {
-
+$("#btnLogOut").hide();
 //    var hide=$("#hideByInput").val().toString();
 //    if(hide.length === 0)
 //    {
@@ -18,7 +18,7 @@ $(document).ready(function () {
 //        //$("#loginHere").show();
 //    }
 
-    $("#btnLogOut").hide();
+    
     $("#userNameValidation").keyup(function () {
         var userName = $("#userNameValidation").val().toString();
 
@@ -78,6 +78,7 @@ $(document).ready(function () {
         }
    });
     
+    $("#controllerMsg").delay(3000).slideUp(500);
 });
 
 

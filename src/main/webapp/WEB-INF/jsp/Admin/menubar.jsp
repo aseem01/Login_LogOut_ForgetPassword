@@ -1,7 +1,7 @@
 <nav class="navbar navbar" style="background-color: #BBB1A7;border: 1px dotted #1D3575;">
  
                     <ul class="nav navbar-nav" style="font-weight: bold">
-                        <li><a href="#" id="nmc">Home</a></li>
+                        <li><a href="dashboard" id="nmc">Home</a></li>
 
                         <div id="dropdown" class="nav navbar-nav">
                             <li><a href="#" id="nmc">User <span class="glyphicon glyphicon-menu-down"></span></a></li>

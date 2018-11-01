@@ -7,8 +7,6 @@ package com.bank.service;
 
 import com.bank.dao.AdminDao;
 import com.bank.model.User;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +46,18 @@ public class AdminService implements InterfaceAdminService {
         return admindao.getMaxUserId();
     }
     
+    @Override
+    public boolean updateMyprofile(User user)
+    {
+        return admindao.updateMyProfile(user);
+    }
+    
+    @Override
+    public String getMyPasw(Integer id)
+    {
+        return admindao.getUserPassword(id);
+    }
+            
     @Override
     public boolean deleteUser(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
