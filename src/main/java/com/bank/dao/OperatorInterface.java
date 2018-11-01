@@ -20,5 +20,10 @@ public interface OperatorInterface {
  public boolean updateUser(User user);
  
  public boolean deleteUser(int id);
+  public Integer getMaxUserId() ;
+ 
+ public boolean updateMyProfile(User user);
+ 
+ public String getUserPassword(Integer id);
     
 }

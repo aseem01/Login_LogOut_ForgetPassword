@@ -23,13 +23,7 @@ public class OperatorService implements InterfaceOperatorService {
     @Autowired
     public void setOperatorDao(OperatorDao operatorDao) {
         this.operatorDao = operatorDao;
-    }
-
-    // AdminDao adminDao;
-    //@Autowired
-//    public void setUserDao(AdminDao userDao){
-//        this.userDao=userDao;
-//    } 
+    } 
 
     @Override
     public List listAllUser() {
@@ -49,6 +43,21 @@ public class OperatorService implements InterfaceOperatorService {
     @Override
     public boolean deleteUser(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Integer getMaxUserId() {
+       return operatorDao.getMaxUserId();
+    }
+
+    @Override
+    public boolean updateMyprofile(User user) {
+         return operatorDao.updateMyProfile(user);
+    }
+
+    @Override
+    public String getMyPasw(Integer id) {
+        return operatorDao.getUserPassword(id);
     }
 
 
