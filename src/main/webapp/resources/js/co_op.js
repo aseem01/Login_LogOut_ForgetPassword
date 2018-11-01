@@ -51,6 +51,33 @@ $(document).ready(function () {
         $("#btnLogOut").delay(1500).slideUp(500);
 
     });
+    
+   $("#reTypePass").keyup(function (){
+       var pas1=$("#reTypePass").val().toString();
+       var pas2=$("#typePass").val().toString();
+       
+       if(pas1 !== pas2)
+       {
+           $("#pasDontMatchMsg").slideDown(400);
+           $("#btnChangePas").slideUp(400);
+       }
+       else{
+           $("#pasDontMatchMsg").slideUp(400);
+           $("#btnChangePas").slideDown(400);
+       }
+   });
+   
+   $("#typePass").keyup(function (){
+       var password = $("#typePass").val().toString();
+
+        if (password.length < 8)
+        {
+            $("#typePassMsg").slideDown(500);
+        } else {
+            $("#typePassMsg").slideUp(500);
+        }
+   });
+    
 });
 
 

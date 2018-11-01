@@ -128,9 +128,13 @@ public class DefaultController {
     }
 
     @RequestMapping(value = "recoverypassword", method = RequestMethod.POST)
-    public String recoverypassword(@RequestParam("pass") String pass) {
+    public String recoverypassword(@RequestParam("secondPass") String secondPass,Model m) {
         if (ss != null) {
-            if (defMod.updatePassword(pass, ss.getAttribute("userid") + "")) {
+            if (defMod.updatePassword(secondPass, ss.getAttribute("userid") + "")) {
+                m.addAttribute("controllerReply", "Password changed successfully");
+                return "index";
+            }else{
+                m.addAttribute("controllerReply", "Error in changing password");
                 return "index";
             }
         }

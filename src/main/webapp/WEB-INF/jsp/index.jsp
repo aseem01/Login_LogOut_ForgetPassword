@@ -102,22 +102,49 @@
 
             <div class="row">
                 <div class="footer">
-                    sd
+                   
                 </div>
             </div>
         </div>
 
         <!--get user name  Modal -->
         <div class="modal fade" id="username" role="dialog">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">                    
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">  
+                    <div class="modal-header" style="text-align:center">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <img src="resources/site_images/icon_forgot_password.png" style="height: 50px;width: 50px" alt=""/>
+                        <p style="color: #286090; font-size: 25px;margin-bottom: -.7em">Forgot Password</p>
+                    </div>
                     <div class="modal-body">
-                        <form method="post" action="checkuser">
-                            <h2>For Verification</h2>
-                            <p id="wronguser" style="display: none; color: red">Wrong user !!</p>
-                            username<input type="text" name="uname"/>
-                            <input type="submit" class="btn btn-default" style="margin-left: 100px; margin-top: 5px" value="Submit" />                            
-                            <button type="button" class="btn btn-default" style="margin-top: 5px" data-dismiss="modal">Close</button>
+                        <form method="post" action="checkuser" style="margin-left: 28%">
+
+                            
+                            <!--                            username<input type="text" name="uname"/>
+                                                        <input type="submit" class="btn btn-default" style="margin-left: 100px; margin-top: 5px" value="Submit" />                            
+                                                        <button type="button" class="btn btn-default" style="margin-top: 5px" data-dismiss="modal">Close</button>-->
+
+                            <table>                                                    
+                                <tr>
+                                    <td>
+                                        <label>Username &nbsp;</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="uname" class="form-control" placeholder="Enter Username" style="width: 84%" autofocus required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><br></td>
+                                    <td><p id="wronguser" style="display: none; color: red">Wrong Username !!<br> Please enter the correct username</p></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Confirm" class="btn btn-primary" style="width: 40%">
+                                    </td>
+                                </tr>
+                            </table>
                         </form>
                     </div>
                 </div>
@@ -126,15 +153,54 @@
 
         <!--update password  Modal -->
         <div class="modal fade" id="newpass" role="dialog">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">                    
+            <div class="modal-dialog modal-md">
+                <div class="modal-content"> 
+                    <div class="modal-header" style="text-align:center">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <img src="resources/site_images/icon_change_password.png" style="height: 50px;width: 50px" alt=""/>
+                        <p style="color: #286090; font-size: 25px;margin-bottom: -.7em">Reset Password</p>
+                    </div>
                     <div class="modal-body">
-                        <form method="post" action="recoverypassword">
-                            <h2>Password Recovery</h2>
+                        <form method="post" action="recoverypassword" style="margin-left: 24%">
+<!--                            <h2>Password Recovery</h2>
                             new password<br><input type="password" name="firstpass"/><br>
                             retype password<br><input type="password" name="pass"/>                            
                             <input type="submit" class="btn btn-default" style="margin-left: 100px; margin-top: 5px" value="Submit" />                            
                             <button type="button" class="btn btn-default" style="margin-top: 5px" data-dismiss="modal">Close</button>
+                            -->
+                            <table>                                                    
+                                <tr>
+                                    <td>
+                                        <label> New Password &nbsp;</label>
+                                    </td>
+                                    <td>
+                                        <input id="typePass" type="password" name="firstass" class="form-control" placeholder="New Password"  autofocus required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><br></td>
+                                    <td><p id="typePassMsg" style="color: tomato" hidden>Please enter Minimum 8 Characters </p></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Re-type Password &nbsp;</label>
+                                    </td>
+                                    <td>
+                                        <input id="reTypePass" type="password" name="secondPass" class="form-control" placeholder="Re-type Password" autofocus required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><br></td>
+                                    <td><p id="pasDontMatchMsg" style="color: red; display: none">Password don't match !! </p></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <input id='btnChangePas' type="submit" value="Reset" class="btn btn-primary" style="width: 40%">
+                                    </td>
+                                </tr>
+                            </table>
                         </form>
                     </div>
                 </div>
@@ -142,28 +208,57 @@
         </div> 
         <!--enter code  Modal -->
         <div class="modal fade" id="code_verify" role="dialog">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">                    
-                    <div class="modal-body">
-                        <form method="post" action="verifycode">
-                            <h2>Enter code</h2>
-                            <p id="wrongcode" style="color: red; display: none">Wrong Code !!</p>
-                            <span>check <b>${codetoemail}</b></span>
-                            <input type="text" name="vcode"/>                            
-                            <input type="submit" class="btn btn-default" style="margin-left: 100px; margin-top: 5px" value="Submit" />                            
-                            <button type="button" class="btn btn-default" style="margin-top: 5px" data-dismiss="modal">Close</button>
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">   
+                    <div class="modal-header" style="text-align: center">
+                        <button type="button" class="close " data-dismiss="modal">&times;</button>
+                        <img src="resources/site_images/icon_reset_password.png" style="height: 50px;width: 50px" alt=""/>
+                        <p style="color: #286090; font-size: 20px;margin-bottom: -.7em">Recovery code has been sent to <b>${codetoemail}</b>.</p>
+                        
+                    </div>
+                    <div class="modal-body" >
+                        <form method="post" action="verifycode" style="margin-left: 28%">
+                            
+                            
+<!--                            <input type="text" name="vcode"/>                            
+                            <input type="submit" class="btn btn-primary" style="margin-left: 100px; margin-top: 5px" value="Submit" />  
+                            -->
+                            <table>                                                    
+                                <tr>
+                                    <td>
+                                        <label>  Enter code &nbsp;</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="vcode" class="form-control" placeholder="Recovery Code" style="width: 84%" autofocus required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><br></td>
+                                    <td><p id="wrongcode" style="color: red; display: none">Wrong Code !!<br>Please enter correct code</p></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Confirm" class="btn btn-primary" style="width: 40%">
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <input type="text" value="${newpass}" id="mpass" style="display: none"/>
-        <input type="text" id="codematchresult" value="${isCodeMatched}"/>
+
+        <input type="hidden" value="${newpass}" id="mpass" style="display: none"/>
+        <input type="hidden" id="codematchresult" value="${isCodeMatched}"/>
 
     </body>
     <script>
         var mpass = $("#mpass").val();
-
+        //$("#newpass").modal("show");
         if (mpass === "yes") {
             $("#mpass").val('');
             $("#code_verify").modal("show");
@@ -173,7 +268,7 @@
         }
 
         var matchcode = $("#codematchresult").val();
-        console.log("match code : "+matchcode);
+        console.log("match code : " + matchcode);
         if (matchcode === "yes") {
             $("#newpass").modal("show");
         } else if (matchcode === "no") {
